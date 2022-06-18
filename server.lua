@@ -26,7 +26,7 @@ local function OnPlayerConnecting(name, setKickReason, deferrals)
 
     if isHexAlreadyInUse then
         deferrals.done('Someone with the same steam id is already on the server...')
-		    DropPlayer(player, string.format('Someone with the same steam id is already on the server...'))
+		DropPlayer(player, string.format('Someone with the same steam id is already on the server...'))
     else
         deferrals.done()
     end
