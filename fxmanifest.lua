@@ -7,5 +7,6 @@ author 'BulgaR' -- https://discord.gg/dcyY2e5kb3
 lua54 'yes'
 
 server_script {
+	'config.lua',
     'server.lua'
 }
