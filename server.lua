@@ -1,4 +1,4 @@
-local function OnPlayerConnecting(name, setKickReason, deferrals)
+local function OnPlayerConnecting(name, _, deferrals)
     local player = source
     local idtype
 	if Config.VerifyBoth then
@@ -34,7 +34,7 @@ local function OnPlayerConnecting(name, setKickReason, deferrals)
 		end
 	end
 
-    Wait(500)
+    Wait(2500)
 
     deferrals.update(string.format('Checking if you are not already on the server...', name))
 
@@ -45,12 +45,11 @@ local function OnPlayerConnecting(name, setKickReason, deferrals)
 		local isIdtypeAlreadyInUse = IsIdtypeInUse(idtype, Config.VerificationMethod)
 	end
 
-    Wait(500)
+    Wait(2500)
 	
 	if Config.VerifyBoth then
 		if isIdtypeAlreadyInUse or isIdtypeAlreadyInUse2 then
 			deferrals.done('It looks like you are already on the server....')
-			DropPlayer(player, string.format('It looks like you are already on the server....'))
 			
 			if Config.EnableDiscordLogs then
 				local dcsend = {
@@ -67,11 +66,12 @@ local function OnPlayerConnecting(name, setKickReason, deferrals)
 			end
 		else
 			deferrals.done()
+			
+			-- Add any additional defferals here you may need for example queue system!
 		end	
 	else
 		if isIdtypeAlreadyInUse then
 			deferrals.done('It looks like you are already on the server....')
-			DropPlayer(player, string.format('It looks like you are already on the server....'))
 			
 			if Config.EnableDiscordLogs then
 				local dcsend = {
@@ -88,6 +88,8 @@ local function OnPlayerConnecting(name, setKickReason, deferrals)
 			end
 		else
 			deferrals.done()
+			
+			-- Add any additional defferals here you may need for example queue system!
 		end
 	end
 end
