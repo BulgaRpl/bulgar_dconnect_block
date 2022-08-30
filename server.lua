@@ -1,5 +1,7 @@
 local function OnPlayerConnecting(name, _, deferrals)
     local player = source
+	local isIdtypeAlreadyInUse = false
+	local isIdtypeAlreadyInUse2 = false
     local idtype
 	if Config.VerifyBoth then
 		local idtype2
@@ -39,10 +41,10 @@ local function OnPlayerConnecting(name, _, deferrals)
     deferrals.update(string.format('Checking if you are not already on the server...', name))
 
 	if Config.VerifyBoth then
-		local isIdtypeAlreadyInUse = IsIdtypeInUse(idtype, 'steam')
-	    local isIdtypeAlreadyInUse2 = IsIdtypeInUse(idtype2, 'license')
+		isIdtypeAlreadyInUse = IsIdtypeInUse(idtype, 'steam')
+	    isIdtypeAlreadyInUse2 = IsIdtypeInUse(idtype2, 'license')
 	else
-		local isIdtypeAlreadyInUse = IsIdtypeInUse(idtype, Config.VerificationMethod)
+		isIdtypeAlreadyInUse = IsIdtypeInUse(idtype, Config.VerificationMethod)
 	end
 
     Wait(2500)
