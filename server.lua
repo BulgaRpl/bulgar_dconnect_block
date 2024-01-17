@@ -113,3 +113,28 @@ function IsIdtypeInUse(idtype, vmethod)
     end
     return false
 end
+
+local connectedPlayers = {}
+
+AddEventHandler(Config.PlayerLoaded, function(source)
+	local id
+	connectedPlayers[source] = {}
+	for k,v in ipairs(GetPlayerIdentifiers(source))do
+		if string.sub(v, 1, string.len(Config.VerificationMethod..":")) == Config.VerificationMethod..":" then
+			id = v
+			break
+		end
+	end
+	for s, t in pairs(connectedPlayers) do
+		if t.identifier == id then
+			DropPlayer(source, "Already connected.")
+			connectedPlayers[source] = nil
+		else
+			connectedPlayers[source].identifier = id
+		end
+	end
+end)
+
+AddEventHandler(Config.PlayerDropped, function(reason)
+	connectedPlayers[source] = nil
+end)

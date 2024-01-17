@@ -10,3 +10,5 @@ Config.DiscordColor = '6749952'
 Config.DiscordUserName = 'BulgaR Dconnect Blocker'
 Config.DiscordTitle = 'Attempting to Double Enter the Server'
 Config.EnableDiscordLogs = false
+Config.PlayerLoaded = "esx:playerLoaded" -- handler when the player is loaded in the server
+Config.PlayerDropped = "playerDropped"
