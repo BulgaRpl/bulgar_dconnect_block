@@ -3,9 +3,7 @@ local function OnPlayerConnecting(name, _, deferrals)
 	local isIdtypeAlreadyInUse = false
 	local isIdtypeAlreadyInUse2 = false
     local idtype
-	if Config.VerifyBoth then
-		local idtype2
-	end
+	local idtype2
     local identifiers = GetPlayerIdentifiers(player)
 
     deferrals.defer()
